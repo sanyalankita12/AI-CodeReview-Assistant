@@ -1,3 +1,4 @@
+const projectRoutes = require('./routes/projectRoutes');
 const express = require('express');
 const cors = require('cors');
 require('./config/db');
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {

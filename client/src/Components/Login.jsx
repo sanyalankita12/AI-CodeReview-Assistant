@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
 
   const [name, setName] = useState("");
@@ -30,7 +30,7 @@ const Login = () => {
           password,
         });
         localStorage.setItem("token", res.data.token);
-        alert("Login successful!");
+        onLoginSuccess();
       } else {
         const res = await axios.post("http://localhost:5000/api/auth/register", {
           name,
