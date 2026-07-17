@@ -1,3 +1,4 @@
+const reviewRoutes = require('./routes/reviewRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
