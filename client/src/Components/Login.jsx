@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Login = ({ onLoginSuccess }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -25,14 +27,14 @@ const Login = ({ onLoginSuccess }) => {
 
     try {
       if (isLoginMode) {
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post(`${API_URL}/api/auth/login`, {
           email,
           password,
         });
         localStorage.setItem("token", res.data.token);
         onLoginSuccess();
       } else {
-        const res = await axios.post("http://localhost:5000/api/auth/register", {
+        const res = await axios.post(`${API_URL}/api/auth/register`, {
           name,
           email,
           password,
@@ -86,14 +88,6 @@ const Login = ({ onLoginSuccess }) => {
         {!isLoginMode && (
           <input type="password" placeholder="Confirm Password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full p-4 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 outline-none focus:border-zinc-500 focus:ring-2 focus:ring-zinc-700/50 transition" />
-        )}
-
-        {isLoginMode && (
-          <div className="text-right">
-            <a href="#" className="text-sm text-zinc-400 hover:text-white transition">
-              Forgot password?
-            </a>
-          </div>
         )}
 
         <button type="submit" disabled={loading}

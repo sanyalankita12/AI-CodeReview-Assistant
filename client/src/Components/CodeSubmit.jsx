@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const CodeSubmit = () => {
   const [projectName, setProjectName] = useState("");
   const [language, setLanguage] = useState("javascript");
@@ -16,7 +18,7 @@ const CodeSubmit = () => {
   const runReview = async (projectId, token) => {
     setReviewLoading(true);
     const reviewRes = await axios.post(
-      `http://localhost:5000/api/reviews/${projectId}`,
+      `${API_URL}/api/reviews/${projectId}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -48,7 +50,7 @@ const CodeSubmit = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/projects",
+        `${API_URL}/api/projects`,
         { project_name: projectName, code_content: code, language },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -83,7 +85,7 @@ const CodeSubmit = () => {
       formData.append("language", language);
 
       const res = await axios.post(
-        "http://localhost:5000/api/projects/upload",
+        `${API_URL}/api/projects/upload`,
         formData,
         {
           headers: {

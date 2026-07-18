@@ -13,9 +13,10 @@ const runStaticAnalysis = async (code, language) => {
 
   try {
     const eslint = new ESLint({
-      useEslintrc: true,
-      cwd: __dirname + '/..', // points to server folder where .eslintrc.json lives
-    });
+  useEslintrc: true,
+  cwd: path.join(__dirname, '..'),
+  overrideConfigFile: path.join(__dirname, '..', '.eslintrc.json'),
+});
 
     const results = await eslint.lintText(code);
     const messages = results[0].messages;

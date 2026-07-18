@@ -3,6 +3,8 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import CodeSubmit from "./CodeSubmit";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Dashboard = ({ onLogout }) => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ const Dashboard = ({ onLogout }) => {
   const fetchProjects = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/projects", {
+      const res = await axios.get(`${API_URL}/api/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
@@ -38,7 +40,7 @@ const Dashboard = ({ onLogout }) => {
     setSelectedProjectName(project.project_name);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:5000/api/reviews/${project.id}`, {
+      const res = await axios.get(`${API_URL}/api/reviews/${project.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.data.length > 0) {
