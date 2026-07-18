@@ -6,10 +6,7 @@ require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
-app.use(cors({
-  origin: 'https://ai-code-review-assistant-six-khaki.vercel.app/',
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
