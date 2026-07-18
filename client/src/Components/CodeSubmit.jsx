@@ -7,7 +7,7 @@ const CodeSubmit = () => {
   const [language, setLanguage] = useState("javascript");
   const [code, setCode] = useState("");
   const [file, setFile] = useState(null);
-  const [mode, setMode] = useState("paste"); // "paste" | "upload"
+  const [mode, setMode] = useState("paste");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [reviewLoading, setReviewLoading] = useState(false);
@@ -109,7 +109,6 @@ const CodeSubmit = () => {
     <div className="w-full max-w-[700px] bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-2xl text-white">
       <h2 className="text-2xl font-bold mb-6">Submit Code for Review</h2>
 
-      {/* Mode toggle */}
       <div className="flex gap-3 mb-6">
         <button
           type="button"
@@ -149,9 +148,6 @@ const CodeSubmit = () => {
             className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white outline-none"
           >
             <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="cpp">C++</option>
           </select>
           <textarea
             placeholder="Paste your code here..."
@@ -184,13 +180,10 @@ const CodeSubmit = () => {
             className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white outline-none"
           >
             <option value="javascript">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="cpp">C++</option>
           </select>
           <input
             type="file"
-            accept=".js,.py,.java,.cpp,.c,.jsx,.ts,.tsx,.txt"
+            accept=".js,.jsx"
             onChange={(e) => setFile(e.target.files[0])}
             className="w-full p-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white outline-none file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-zinc-700 file:text-white"
           />
@@ -206,7 +199,7 @@ const CodeSubmit = () => {
 
       {review && (
         <div className="mt-6 p-6 bg-zinc-800 border border-zinc-700 rounded-xl">
-          <h3 className="text-lg font-semibold mb-4 text-teal-400">AI Review</h3>
+          <h3 className="text-lg font-semibold mb-4 text-teal-400">Review</h3>
           <div className="prose prose-invert prose-sm max-w-none prose-headings:text-white prose-strong:text-white prose-code:text-teal-300">
             <ReactMarkdown>{review}</ReactMarkdown>
           </div>
