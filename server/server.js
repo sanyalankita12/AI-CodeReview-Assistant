@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Server chal raha hai!');
+  res.json({ status: 'ok', message: 'AI Code Review Assistant API is running' });
 });
 
 app.use('/api/auth', authRoutes);
